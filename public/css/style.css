@@ -14,7 +14,8 @@
 }
 
 li {
-  list-style: none;
+  /*list-style: none;*/
+  text-align: left;
 }
 
 #appName {
@@ -55,8 +56,25 @@ li {
 
 .itemList {
   margin-top: 1%;
+  display: inline;
+}
+
+#matchesBorder {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #recipeName {
   cursor: pointer;
+  text-align: left;
+}
+
+.delete {
+  display: inline;
+}
+
+.name {
+  display: inline;
+  margin-right: 1%;
 }

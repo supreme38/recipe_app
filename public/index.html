@@ -23,18 +23,20 @@
 
       <div id="list">
         <div class="itemList" ng-repeat="item in names">
-          <div><div class='test'>{{item}}</div> <button class="action delete" ng-click="delete($index)">Remove</button></div>
+          <div class="name">{{item}}
+            <button class="action delete" ng-click="delete($index)">Remove</button>
+          </div>
         </div>
       </div>
 
       <div id="border" ng-show="showB"></div>
-      <div ng-repeat="object in matches" ng-click="showMe =! showMe">
-        <h3 id="recipeName">{{object.recipeName}}</h3>
-          <ul><li ng-repeat="ingredient in object.ingredients" ng-show="showMe">{{ingredient}}</li></ul>
-        <img ng-repeat="img in object.imageUrlsBySize" ng-src={{img}} />
-        <br/>
-        <a href="https://www.yummly.com/recipe/{{object.id}}">More Info</a>
+      <div id="matchesBorder">
+        <div ng-repeat="object in matches">
+          <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{object.id}}">{{object.recipeName}}</a></h2>
+            <ul><li ng-repeat="ingredient in object.ingredients">{{ingredient}}</li></ul>
+          <!-- <img ng-repeat="img in object.imageUrlsBySize" ng-src={{img}} /> -->
+          <br/>
+        </div>
       </div>
-
   </body>
 </html>
