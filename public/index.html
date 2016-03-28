@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="recpie_app2">
+  <head>
+    <meta charset="utf-8">
+      <script src="https://code.jquery.com/jquery-2.2.0.min.js" charset="utf-8"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js" charset="utf-8"></script>
+      <script src="js/app.js" charset="utf-8"></script>
+      <link rel="stylesheet" type="text/css" href="/css/style.css" charset="utf-8">
+      <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <title></title>
+  </head>
+  <body ng-controller="mainController as main">
+
+    <h1 id="appName">App name goes here</h1>
+
+    <form id="form">
+      <input id="searchBox" type="text" ng-model="addIngr" placeholder="add ingredient here">
+      <button type="submit" class="create add" ng-click="add(addIngr)">Add</button>
+    </form>
+
+    <button type ='submit' class="mainButtons" ng-click="find(); showB =! showB">Search</button>
+    <button type ='submit' class="mainBUttons" ng-click="clear(); showB =! showB">Clear Results</button>
+
+      <div id="list">
+        <div class="itemList" ng-repeat="item in names">
+          <div><div class='test'>{{item}}</div> <button class="action delete" ng-click="delete($index)">Remove</button></div>
+        </div>
+      </div>
+
+      <div id="border" ng-show="showB"></div>
+      <div ng-repeat="object in matches" ng-click="showMe =! showMe">
+        <h3 id="recipeName">{{object.recipeName}}</h3>
+          <ul><li ng-repeat="ingredient in object.ingredients" ng-show="showMe">{{ingredient}}</li></ul>
+        <img ng-repeat="img in object.imageUrlsBySize" ng-src={{img}} />
+        <br/>
+        <a href="https://www.yummly.com/recipe/{{object.id}}">More Info</a>
+      </div>
+
+  </body>
+</html>

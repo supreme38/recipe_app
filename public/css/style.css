@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "MyFont";
+    src: url("../fonts/Pangram-ExtraLight.otf");
+}
+
+@font-face {
+    font-family: "MyFont2";
+    src: url("../fonts/billy.ttf");
+}
+
+* {
+  font-family: "MyFont";
+  text-align: center;
+}
+
+li {
+  list-style: none;
+}
+
+#appName {
+  margin-top: 20%;
+  margin-bottom: 5%;
+  font-family: "MyFont2";
+  font-size: 5em;
+}
+
+#searchBox {
+  width: 40%;
+  height: 30px;
+}
+
+.add {
+  margin-left: 1%;
+}
+
+.mainButtons {
+  margin-top: 3%;
+}
+
+#border {
+  border-bottom: solid 3px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+#list {
+  margin-top: 3%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.itemList {
+  margin-top: 1%;
+}
+
+#recipeName {
+  cursor: pointer;
+}
