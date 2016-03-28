@@ -22,8 +22,8 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
   };
 
   $scope.add = function(addIngr) {
-    $scope.list.push("&allowedIngredient[]=" + addIngr);
-    $scope.names.push(addIngr);
+    $scope.list.push("&allowedIngredient[]=" + addIngr.toLowerCase());
+    $scope.names.push(addIngr.toLowerCase());
     $scope.addIngr = null;
     console.log($scope.list.join(''));
   };
