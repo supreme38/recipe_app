@@ -2,7 +2,8 @@
 var express  = require('express'),
     router   = express.Router();
 
-var Recipe    = require('../models/recipes')
+// MODELS
+var User    = require('../models/users')
 
 // INDEX
 router.get('/', function(req, res){
