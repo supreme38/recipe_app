@@ -6,10 +6,11 @@
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js" charset="utf-8"></script>
       <script src="js/app.js" charset="utf-8"></script>
       <link rel="stylesheet" type="text/css" href="/css/style.css" charset="utf-8">
+      <link rel="stylesheet" href="/css/animate.min.css">
       <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <title></title>
   </head>
-  <body ng-controller="mainController as main">
+  <body ng-controller="mainController as main" class="animated fadeIn">
 
     <h1 id="appName">App name goes here</h1>
 
@@ -18,20 +19,20 @@
       <button type="submit" class="create add" ng-click="add(addIngr)">Add</button>
     </form>
 
-    <button type ='submit' class="mainButtons" ng-click="find(); showB =! showB">Search</button>
-    <button type ='submit' class="mainBUttons" ng-click="clear(); showB =! showB">Clear Results</button>
+    <button type ='submit' class="mainButtons" ng-click="find(); showMe = true">Search</button>
+    <button type ='submit' class="mainBUttons" ng-click="clear(); showMe = false">Clear Results</button>
 
       <div id="list">
         <div class="itemList" ng-repeat="item in names">
-          <div class="name">{{item}}
+          <div class="name animated fadeIn" ng-class="{'animated fadeOut': animate1}">{{item}}
             <button class="action delete" ng-click="delete($index)">Remove</button>
           </div>
         </div>
       </div>
 
-      <div id="border" ng-show="showB"></div>
+      <div id="border" class="animated fadeIn" ng-show="showMe"></div>
       <div id="matchesBorder">
-        <div ng-repeat="object in matches">
+        <div class="animated fadeIn" ng-repeat="object in matches">
           <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{object.id}}">{{object.recipeName}}</a></h2>
             <ul><li ng-repeat="ingredient in object.ingredients">{{ingredient}}</li></ul>
           <!-- <img ng-repeat="img in object.imageUrlsBySize" ng-src={{img}} /> -->
