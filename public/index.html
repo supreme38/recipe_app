@@ -24,7 +24,7 @@
 
       <div id="list">
         <div class="itemList" ng-repeat="item in names">
-          <div class="name animated fadeIn" ng-class="{'animated fadeOut': animate1}">{{item}}
+          <div class="name animated fadeIn">{{item}}
             <button class="action delete" ng-click="delete($index)">Remove</button>
           </div>
         </div>
@@ -39,5 +39,20 @@
           <br/>
         </div>
       </div>
+
+    <form ng-submit="register()">
+      <input type="email" placeholder="email" ng-model="newUser.email">
+      <input type="password" placeholder="password" ng-model="newUser.password">
+      <input type="submit" class="button" value="newUser">
+    </form>
+
+    <form ng-submit="login()">
+      <input type="text" placeholder="email" ng-model="signIn.email">
+      <input type="password" placeholder="password" ng-model="signIn.password">
+      <input type="submit" class="button" value="signIn">
+    </form>
+
+    <p>email: {{user.email}}</p>
+
   </body>
 </html>

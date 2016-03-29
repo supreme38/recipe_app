@@ -5,6 +5,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
   $scope.matches = null;
   $scope.list = [];
   $scope.names = [];
+  $scope.user = null;
 
   $scope.find = function(){
     $http({
@@ -38,6 +39,29 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
     $scope.matches = null;
     $scope.list = [];
     $scope.names = [];
-  }
+  };
+
+  $scope.register = function(){
+    $http({
+      method: "POST",
+      url: "/users/register",
+      data: $scope.newUser
+    }).then(function(response){
+      console.log(response.data._id);
+      $scope.newUser = null;
+    })
+  };
+
+  $scope.login = function(){
+    $http({
+      method: "POST",
+      url: "/users/login",
+      data: $scope.signIn
+      }).then(function(response){
+        $scope.user = response.data
+        console.log(response.data._id);
+        $scope.signIn = null;
+      })
+    };
 
 }]);
