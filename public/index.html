@@ -12,6 +12,16 @@
   </head>
   <body ng-controller="mainController as main" class="animated fadeIn">
 
+    <h2>email: {{user.email}}</h2>
+    <div class="animated fadeIn" ng-repeat="fav in user.favorites">
+      <button ng-click="deleteFav(fav)">Delete</button>
+      <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{fav.id}}">{{fav.recipeName}}</a></h2>
+        <ul><li ng-repeat="ingredient in fav.ingredients">{{ingredient}}</li></ul>
+      <br/>
+    </div>
+
+
+
     <h1 id="appName">App name goes here</h1>
 
     <form id="form">
@@ -53,7 +63,6 @@
       <input type="submit" class="button" value="signIn">
     </form>
 
-    <p>email: {{user.email}}</p>
 
   </body>
 </html>

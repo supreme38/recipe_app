@@ -60,7 +60,6 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       }).then(function(response){
         $scope.user = response.data
         console.log($scope.user)
-        console.log($scope.user._id)
         $scope.signIn = null;
       })
     };
@@ -68,12 +67,21 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
     $scope.fav = function(object){
       $http({
         method: "PUT",
-        url: "users/fav/" + $scope.user._id,
+        url: "/users/fav/" + $scope.user._id,
         data: object
       }).then(function(response){
-        console.log(response.data)
+        $scope.user = response.data
       })
     };
 
+    $scope.deleteFav = function(object){
+      $http({
+        method: "PUT",
+        url: "/users/deleteFav/" + $scope.user._id,
+        data: object
+      }).then(function(response){
+        $scope.user = response.data
+      })
+    };
 
 }]);

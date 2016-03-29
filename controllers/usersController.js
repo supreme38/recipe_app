@@ -15,8 +15,8 @@ router.get('/', function(req, res){
 
 // LOGOUT
 router.get('/logout',function(req,res){
-      req.logout();
-      res.redirect('/');
+  req.logout();
+  res.redirect('/');
 });
 
 // SIGN-UP
@@ -37,11 +37,24 @@ router.put("/fav/:id", function(req, res){
   User.findById(req.params.id, function(err, user){
     user.favorites.push(req.body);
     user.save(function(err, data){
-      console.log(data)
+      res.send(data)
     });
   });
 });
 
+// DELETING FROM FAVORITES
+router.put("/deleteFav/:id", function(req, res){
+  User.findById(req.params.id, function(err, user){
+    user.favorites.forEach(function(x){
+      if(x.id == req.body.id)
+      var num = user.favorites.indexOf(x);
+      user.favorites.splice(num, 1);
+      user.save(function(err, data){
+        res.send(data)
+      })
+    })
+  })
+})
 
 // LOGIN STATUS
 function isLoggedIn(req, res, next) {
