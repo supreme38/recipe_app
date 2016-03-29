@@ -47,7 +47,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       url: "/users/register",
       data: $scope.newUser
     }).then(function(response){
-      console.log(response.data._id);
+      $scope.user = response.data
       $scope.newUser = null;
     })
   };
@@ -59,9 +59,21 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       data: $scope.signIn
       }).then(function(response){
         $scope.user = response.data
-        console.log(response.data._id);
+        console.log($scope.user)
+        console.log($scope.user._id)
         $scope.signIn = null;
       })
     };
+
+    $scope.fav = function(object){
+      $http({
+        method: "PUT",
+        url: "users/fav/" + $scope.user._id,
+        data: object
+      }).then(function(response){
+        console.log(response.data)
+      })
+    };
+
 
 }]);

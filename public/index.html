@@ -33,6 +33,7 @@
       <div id="border" class="animated fadeIn" ng-show="showMe"></div>
       <div id="matchesBorder">
         <div class="animated fadeIn" ng-repeat="object in matches">
+          <button ng-click="fav(object)">Add</button>
           <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{object.id}}">{{object.recipeName}}</a></h2>
             <ul><li ng-repeat="ingredient in object.ingredients">{{ingredient}}</li></ul>
           <!-- <img ng-repeat="img in object.imageUrlsBySize" ng-src={{img}} /> -->
