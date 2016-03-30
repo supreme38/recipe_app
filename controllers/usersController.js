@@ -45,12 +45,13 @@ router.put("/fav/:id", function(req, res){
 router.put("/deleteFav/:id", function(req, res){
   User.findById(req.params.id, function(err, user){
     user.favorites.forEach(function(x){
-      if(x.id == req.body.id)
+      if(x.id == req.body.id){
       var num = user.favorites.indexOf(x);
       user.favorites.splice(num, 1);
-      user.save(function(err, data){
-        res.send(data)
-      });
+      }
+    });
+    user.save(function(err, data){
+      res.send(data)
     });
   });
 });

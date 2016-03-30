@@ -6,11 +6,12 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
   $scope.list = [];
   $scope.names = [];
   $scope.user = null;
+  $scope.secure = null;
 
   $scope.find = function(){
     $http({
       method: "GET",
-      url: "http://api.yummly.com/v1/api/recipes?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY" + $scope.list.join('') + "&maxResult=15",
+      url: "http://api.yummly.com/v1/api/recipes?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY" + $scope.list.join('') + "&maxResult=50",
       headers: {
         "x-yummly-app-id": "2f8629a9",
         "x-yummly-app-key": "99f848baed7fe679e97be9c69cb11964",
@@ -18,7 +19,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
     }).then(function(response){
       $scope.matches = response.data.matches;
       $scope.ingr = null;
-      console.log(response.data.matches);
+      // console.log(response.data.matches);
     });
   };
 
@@ -26,13 +27,13 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
     $scope.list.push("&allowedIngredient[]=" + addIngr.toLowerCase());
     $scope.names.push(addIngr.toLowerCase());
     $scope.addIngr = null;
-    console.log($scope.list.join(''));
+    // console.log($scope.list.join(''));
   };
 
   $scope.delete = function(index) {
     $scope.list.splice(index, 1);
     $scope.names.splice(index, 1);
-    console.log($scope.list);
+    // console.log($scope.list);
   };
 
   $scope.clear = function(){
@@ -48,8 +49,9 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       data: $scope.newUser
     }).then(function(response){
       $scope.user = response.data
-      $scope.newUser = null;
     });
+    $scope.goAway =! $scope.goAway
+    $scope.secure = true;
   };
 
   $scope.login = function(){
@@ -59,9 +61,9 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       data: $scope.signIn
       }).then(function(response){
         $scope.user = response.data
-        console.log($scope.user)
-        $scope.signIn = null;
       });
+      $scope.goAway =! $scope.goAway;
+      $scope.secure = true;
     };
 
     $scope.fav = function(object){

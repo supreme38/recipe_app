@@ -12,25 +12,45 @@
   </head>
   <body ng-controller="mainController as main" class="animated fadeIn">
 
-    <h2>email: {{user.email}}</h2>
-    <div class="animated fadeIn" ng-repeat="fav in user.favorites">
-      <button ng-click="deleteFav(fav)">Delete</button>
-      <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{fav.id}}">{{fav.recipeName}}</a></h2>
-        <ul><li ng-repeat="ingredient in fav.ingredients">{{ingredient}}</li></ul>
-      <br/>
+    <div class="menu" ng-hide="goAway">
+      <div class="right click" ng-click="sign =! sign">sign up</div>
+      <form ng-show="sign" class="animated fadeIn form" ng-submit="register()">
+        <input type="email" placeholder="email" ng-model="newUser.email">
+        <input type="password" placeholder="password" ng-model="newUser.password">
+        <input type="submit" class="button action" value="Sign Up">
+      </form>
+
+      <div class="right click" ng-click="log =! log">log in</div>
+        <form ng-show="log" class="animated fadeIn form" ng-submit="login()">
+          <input type="text" placeholder="email" ng-model="signIn.email">
+          <input type="password" placeholder="password" ng-model="signIn.password">
+          <input type="submit" class="button action" value="Log In">
+        </form>
     </div>
 
-          <div><a href="/" ng-click="logout()">LOGOUT</a></div>
+      <div class="animated fadeIn menu" ng-if="secure == true">
+        <div class="right click" ng-click="showFav =! showFav">favorites</div>
+        <a id="a" href="/" class="right" ng-click="logout()">logout</a>
+        <div class="right">email: {{user.email}}</div>
 
-    <h1 id="appName">App name goes here</h1>
+        <div id="favList">
+          <div class="animated fadeIn" ng-repeat="fav in user.favorites" ng-show="showFav">
+            <h3><a id="a2" href="https://www.yummly.com/recipe/{{fav.id}}">{{fav.recipeName}}</a>
+              <button ng-click="deleteFav(fav)">Delete</button>
+            </h3>
+          </div>
+        </div>
+      </div>
 
-    <form id="form">
-      <input id="searchBox" type="text" ng-model="addIngr" placeholder="add ingredient here">
-      <button type="submit" class="create add" ng-click="add(addIngr)">Add</button>
-    </form>
+      <h1 id="appName">App name goes here</h1>
 
-    <button type ='submit' class="mainButtons" ng-click="find(); showMe = true">Search</button>
-    <button type ='submit' class="mainBUttons" ng-click="clear(); showMe = false">Clear Results</button>
+      <form id="form">
+        <input id="searchBox" type="text" ng-model="addIngr" placeholder="add ingredient here">
+        <button type="submit" class="create add" ng-click="add(addIngr)">Add</button>
+      </form>
+
+      <button type ='submit' class="mainButtons" ng-click="find(); showMe = true">Search</button>
+      <button type ='submit' class="mainBUttons" ng-click="clear(); showMe = false">Clear Results</button>
 
       <div id="list">
         <div class="itemList" ng-repeat="item in names">
@@ -43,26 +63,14 @@
       <div id="border" class="animated fadeIn" ng-show="showMe"></div>
       <div id="matchesBorder">
         <div class="animated fadeIn" ng-repeat="object in matches">
-          <button ng-click="fav(object)">Add</button>
-          <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{object.id}}">{{object.recipeName}}</a></h2>
+          <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{object.id}}">{{object.recipeName}}</a>
+            <button ng-click="fav(object)" ng-if="secure == true">Add</button>
+          </h2>
             <ul><li ng-repeat="ingredient in object.ingredients">{{ingredient}}</li></ul>
           <!-- <img ng-repeat="img in object.imageUrlsBySize" ng-src={{img}} /> -->
           <br/>
         </div>
       </div>
-
-    <form ng-submit="register()">
-      <input type="email" placeholder="email" ng-model="newUser.email">
-      <input type="password" placeholder="password" ng-model="newUser.password">
-      <input type="submit" class="button" value="newUser">
-    </form>
-
-    <form ng-submit="login()">
-      <input type="text" placeholder="email" ng-model="signIn.email">
-      <input type="password" placeholder="password" ng-model="signIn.password">
-      <input type="submit" class="button" value="signIn">
-    </form>
-
 
   </body>
 </html>

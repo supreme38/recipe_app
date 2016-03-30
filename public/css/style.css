@@ -14,8 +14,32 @@
 }
 
 li {
-  /*list-style: none;*/
   text-align: left;
+}
+
+#a {
+  color: black;
+}
+
+#a2 {
+  color: white;
+}
+
+.menu {
+  width: 100%;
+  text-align: right;
+  margin-top: 30px;
+}
+
+.right {
+  display: inline;
+  padding-right: 3%;
+}
+
+.form {
+  position: absolute;
+  right: 180px;
+  top: 28px;
 }
 
 #appName {
@@ -36,6 +60,11 @@ li {
 
 .mainButtons {
   margin-top: 3%;
+}
+
+.click:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 #border {
@@ -77,4 +106,13 @@ li {
 .name {
   display: inline;
   margin-right: 1%;
+}
+
+#favList {
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
