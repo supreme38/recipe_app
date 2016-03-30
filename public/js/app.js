@@ -9,6 +9,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
   $scope.secure = null;
 
   $scope.find = function(){
+    $scope.noResults = false;
     $http({
       method: "GET",
       url: "http://api.yummly.com/v1/api/recipes?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY" + $scope.list.join('') + "&maxResult=50",
@@ -43,6 +44,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
     $scope.matches = null;
     $scope.list = [];
     $scope.names = [];
+    $scope.noResults = false;
   };
 
   $scope.register = function(){
