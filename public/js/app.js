@@ -93,4 +93,8 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       });
     };
 
+    $scope.show = function(){
+      $scope.showFav =! $scope.showFav
+    }
+
 }]);

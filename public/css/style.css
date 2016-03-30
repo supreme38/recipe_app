@@ -110,9 +110,13 @@ li {
 
 #favList {
   background: rgba(0, 0, 0, 0.8);
-  position: absolute;;
+  position: absolute;
   left: 0;
   right: 0;
+  top: 50px;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 5%;
+  width: 100%;
+  height: 90%;
 }

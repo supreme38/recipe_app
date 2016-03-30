@@ -29,17 +29,9 @@
     </div>
 
       <div class="animated fadeIn menu" ng-if="secure == true">
-        <div class="right click" ng-click="showFav =! showFav">favorites</div>
+        <div class="right click" ng-click="show()">favorites</div>
         <a id="a" href="/" class="right" ng-click="logout()">logout</a>
         <div class="right">email: {{user.email}}</div>
-
-        <div id="favList">
-          <div class="animated fadeIn" ng-repeat="fav in user.favorites" ng-show="showFav">
-            <h3><a id="a2" href="https://www.yummly.com/recipe/{{fav.id}}">{{fav.recipeName}}</a>
-              <button ng-click="deleteFav(fav)">Delete</button>
-            </h3>
-          </div>
-        </div>
       </div>
 
       <h1 id="appName">App name goes here</h1>
@@ -62,13 +54,22 @@
 
       <div id="border" class="animated fadeIn" ng-show="showMe"></div>
       <div id="matchesBorder">
-        <div class="animated fadeIn" ng-repeat="object in matches">
-          <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{object.id}}">{{object.recipeName}}</a>
-            <button ng-click="fav(object)" ng-if="secure == true">Add</button>
-          </h2>
-            <ul><li ng-repeat="ingredient in object.ingredients">{{ingredient}}</li></ul>
-          <!-- <img ng-repeat="img in object.imageUrlsBySize" ng-src={{img}} /> -->
-          <br/>
+        <div class="animated fadeIn" ng-repeat="object in matches" ng-init="adding=[]">
+          <div ng-hide="adding[$index]">
+            <h2 id="recipeName"><a href="https://www.yummly.com/recipe/{{object.id}}">{{object.recipeName}}</a>
+              <button ng-click="fav(object); adding[$index]=true" ng-if="secure == true" class="share">Add</button>
+            </h2>
+              <ul><li ng-repeat="ingredient in object.ingredients">{{ingredient}}</li></ul>
+            <br/>
+          </div>
+        </div>
+      </div>
+
+      <div id="favList" ng-show="showFav" class="animated fadeIn">
+        <div ng-repeat="fav in user.favorites">
+          <h3><a id="a2" href="https://www.yummly.com/recipe/{{fav.id}}">{{fav.recipeName}}</a>
+            <button ng-click="deleteFav(fav)" class="create">Delete</button>
+          </h3>
         </div>
       </div>
 
