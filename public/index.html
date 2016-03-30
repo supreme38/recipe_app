@@ -53,6 +53,7 @@
       </div>
 
       <div id="border" class="animated fadeIn" ng-show="showMe"></div>
+      <h1 ng-show="noResults" class="animated fadeIn">No Results</h1>
       <div id="matchesBorder">
         <div class="animated fadeIn" ng-repeat="object in matches" ng-init="adding=[]">
           <div ng-hide="adding[$index]">

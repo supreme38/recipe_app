@@ -19,7 +19,10 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
     }).then(function(response){
       $scope.matches = response.data.matches;
       $scope.ingr = null;
-      // console.log(response.data.matches);
+      console.log(response.data.totalMatchCount)
+      if(response.data.totalMatchCount == 0){
+        $scope.noResults = true;
+      }
     });
   };
 
