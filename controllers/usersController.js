@@ -16,7 +16,6 @@ router.get('/', function(req, res){
 // LOGOUT
 router.get('/logout',function(req,res){
   req.logout();
-  res.redirect('/');
 });
 
 // SIGN-UP
@@ -51,17 +50,17 @@ router.put("/deleteFav/:id", function(req, res){
       user.favorites.splice(num, 1);
       user.save(function(err, data){
         res.send(data)
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});
 
 // LOGIN STATUS
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
-  	return next();
+    return next();
   } else {
-  	res.redirect('/');
+    res.redirect('/');
   };
 };
 

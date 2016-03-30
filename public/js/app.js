@@ -19,7 +19,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       $scope.matches = response.data.matches;
       $scope.ingr = null;
       console.log(response.data.matches);
-    })
+    });
   };
 
   $scope.add = function(addIngr) {
@@ -49,7 +49,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
     }).then(function(response){
       $scope.user = response.data
       $scope.newUser = null;
-    })
+    });
   };
 
   $scope.login = function(){
@@ -61,7 +61,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
         $scope.user = response.data
         console.log($scope.user)
         $scope.signIn = null;
-      })
+      });
     };
 
     $scope.fav = function(object){
@@ -71,7 +71,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
         data: object
       }).then(function(response){
         $scope.user = response.data
-      })
+      });
     };
 
     $scope.deleteFav = function(object){
@@ -81,7 +81,14 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
         data: object
       }).then(function(response){
         $scope.user = response.data
-      })
+      });
+    };
+
+    $scope.logout = function(){
+      $http({
+        method: "GET",
+        url: "/users/logout"
+      });
     };
 
 }]);
