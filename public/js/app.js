@@ -7,30 +7,38 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
   $scope.names = [];
   $scope.user = null;
   $scope.secure = null;
+  $scope.startSearch = false;
 
   $scope.find = function(){
     $scope.noResults = false;
-    $http({
-      method: "GET",
-      url: "http://api.yummly.com/v1/api/recipes?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY" + $scope.list.join('') + "&maxResult=50",
-      headers: {
-        "x-yummly-app-id": "2f8629a9",
-        "x-yummly-app-key": "99f848baed7fe679e97be9c69cb11964",
-      }
-    }).then(function(response){
-      $scope.matches = response.data.matches;
-      $scope.ingr = null;
-      console.log(response.data.totalMatchCount)
-      if(response.data.totalMatchCount == 0){
-        $scope.noResults = true;
-      }
-    });
+    $scope.noResults2 = false;
+    if($scope.startSearch === false){
+      $scope.noResults2 = true;
+    } else {
+      $http({
+        method: "GET",
+        url: "http://api.yummly.com/v1/api/recipes?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY" + $scope.list.join('') + "&maxResult=50",
+        headers: {
+          "x-yummly-app-id": "2f8629a9",
+          "x-yummly-app-key": "99f848baed7fe679e97be9c69cb11964",
+        }
+      }).then(function(response){
+        $scope.matches = response.data.matches;
+        $scope.ingr = null;
+        if(response.data.totalMatchCount == 0){
+          $scope.noResults = true;
+        }
+      });
+    }
   };
 
   $scope.add = function(addIngr) {
     $scope.list.push("&allowedIngredient[]=" + addIngr.toLowerCase());
     $scope.names.push(addIngr.toLowerCase());
     $scope.addIngr = null;
+    $scope.startSearch = true;
+    $scope.noResults2 = false;
+    $scope.showMe = false;
     // console.log($scope.list.join(''));
   };
 
@@ -45,6 +53,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
     $scope.list = [];
     $scope.names = [];
     $scope.noResults = false;
+    $scope.noResults2 = false;
   };
 
   $scope.register = function(){
@@ -53,10 +62,10 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       url: "/users/register",
       data: $scope.newUser
     }).then(function(response){
-      $scope.user = response.data
+      $scope.user = response.data;
+      $scope.secure = true;
+      $scope.goAway =! $scope.goAway;
     });
-    $scope.goAway =! $scope.goAway
-    $scope.secure = true;
   };
 
   $scope.login = function(){
@@ -66,9 +75,13 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
       data: $scope.signIn
       }).then(function(response){
         $scope.user = response.data
+        if($scope.user._id === undefined){
+          $scope.secure = false;
+        } else {
+          $scope.secure = true;
+          $scope.goAway =! $scope.goAway;
+        }
       });
-      $scope.goAway =! $scope.goAway;
-      $scope.secure = true;
     };
 
     $scope.fav = function(object){

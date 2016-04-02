@@ -13,6 +13,7 @@
   <body ng-controller="mainController as main" class="animated fadeIn">
 
     <div class="menu" ng-hide="goAway">
+
       <div class="right click" ng-click="sign =! sign">sign up</div>
       <form ng-show="sign" class="animated fadeIn form" ng-submit="register()">
         <input type="email" placeholder="email" ng-model="newUser.email">
@@ -26,13 +27,17 @@
           <input type="password" placeholder="password" ng-model="signIn.password">
           <input type="submit" class="button action" value="Log In">
         </form>
-    </div>
+
+        <div id="err" class="animated fadeIn" ng-if="secure == false">login error</div>
+
+      </div>
 
       <div class="animated fadeIn menu" ng-if="secure == true">
         <div class="right click" ng-click="show()">favorites</div>
         <a id="a" href="/" class="right" ng-click="logout()">logout</a>
         <div class="right">email: {{user.email}}</div>
       </div>
+
 
       <h1 id="appName">app name goes here</h1>
 
@@ -53,7 +58,8 @@
       </div>
 
       <div id="border" class="animated fadeIn" ng-show="showMe"></div>
-      <h1 ng-show="noResults" class="animated fadeIn">No Results</h1>
+      <h1 ng-show="noResults" class="animated fadeIn" id="noResults">No Results</h1>
+      <h1 ng-show="noResults2" class="animated fadeIn" id="noResults">Add Ingredient(s)</h1>
       <div id="matchesBorder">
         <div class="animated fadeIn" ng-repeat="object in matches" ng-init="adding=[]">
           <div ng-hide="adding[$index]">

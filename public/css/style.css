@@ -31,6 +31,14 @@ li {
   margin-top: 30px;
 }
 
+#err {
+  position: absolute;
+  right: 600px;
+  top: 30px;
+  color: red;
+  font-weight: bold;
+}
+
 .right {
   display: inline;
   padding-right: 3%;
@@ -41,6 +49,7 @@ li {
   right: 180px;
   top: 28px;
 }
+
 
 #appName {
   margin-top: 20%;
@@ -120,4 +129,9 @@ li {
   padding-top: 5%;
   width: 100%;
   height: 100%;
+}
+
+#noResults {
+  font-family: "MyFont";
+  text-align: center;
 }
