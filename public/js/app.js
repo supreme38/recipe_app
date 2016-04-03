@@ -81,6 +81,7 @@ app.controller("mainController", ["$http", "$scope", function($http, $scope){
           $scope.secure = true;
           $scope.goAway =! $scope.goAway;
         }
+        $scope.signIn = null;
       });
     };
 
