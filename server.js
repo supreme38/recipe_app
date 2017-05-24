@@ -9,7 +9,7 @@ var express           = require('express'),
     port              = process.env.PORT || 3000;
 
 require('./config/passport')(passport);
-var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/recpie_app2';
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/Yummy';
 mongoose.connect(mongoUri);
 
 // MIDDELWARE
